@@ -1,3 +1,15 @@
 Flask
 torch
 numpy
+torchvision
+matplotlib
+pandas
+dask[complete]
+tensorboard
+zarr
+fsspec
+requests
+aiohttp
+seaborn
+scikit-learn
+lightning

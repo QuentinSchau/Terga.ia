@@ -30,18 +30,16 @@ class Layer(nn.Module):
         super(Layer, self).__init__()
 
         self.layerParam = layerParam
-        if not hasattr(nn,layerParam["layer"]) : raise ValueError("Layer is not class from torch.nn module")
+        if not hasattr(nn,layerParam["layer"]) : raise ValueError("Layer of the parameters is not class from torch.nn module")
         self.layer = getattr(nn, self.layerParam['layer'])(**self.layerParam['layerArgs']) \
             if 'layerArgs' in self.layerParam else getattr(nn, self.layerParam['layer'])()
 
-        if not hasattr(nn, self.layerParam["activationFunction"]): raise ValueError("Layer is not class from torch.nn module")
+        if not hasattr(nn, self.layerParam["activationFunction"]): raise ValueError("Activation Function of the parameters is not class from torch.nn module")
         self.activationFunction = getattr(nn, self.layerParam['activationFunction'])(**self.layerParam['activationFunctionArgs'])\
             if 'activationFunctionArgs' in self.layerParam else getattr(nn, self.layerParam['activationFunction'])()
 
     def forward(self,x):
         return self.layer(self.activationFunction(x))
 
-    def string(self):
-        return self.layerParam
-        # TODO
+
 
