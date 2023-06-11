@@ -166,8 +166,8 @@ class LightningModel(pl.LightningModule):
 
     def configure_optimizers(self):
         # check if the optimizer exist in pytorch optim
-        if not hasattr(nn, self.modelParams["optimizer"]): raise ValueError("Optimizer of the parameters is not class "
-                                                                           "from torch.nn module")
+        if not hasattr(torch.optim, self.modelParams["optimizer"]["algorithm"]): raise ValueError("Optimizer algorithm of the parameters is not class "
+                                                                           "from torch.optim module")
         optimizer = getattr(torch.optim, self.modelParams['optimizer']['algorithm'])(self.parameters(), **self.modelParams['optimizer']['algorithmArgs']) \
             if 'algorithmArgs' in self.modelParams['optimizer'] \
             else getattr(torch.optim, self.modelParams['optimizer']['algorithm'])(self.parameters())
