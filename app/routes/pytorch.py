@@ -1,19 +1,12 @@
-from flask import Flask
 from flask import request
 from lightning.pytorch.loggers import TensorBoardLogger
 from lightning.pytorch.callbacks import ModelCheckpoint,LearningRateMonitor
-from src.model.Datamodule import DummyDataModule
-from src.model.LightningModel import LightningModel
 import lightning.pytorch as pl
-from src.model.PytorchModel import PytorchModel
 from multiprocessing import Process
-import os
-
-app = Flask(__name__)
-
-@app.route("/")
-def index():
-    return "Index Page"
+from app import app
+from app.model.pytorch.PytorchModel import PytorchModel
+from app.model.pytorchLightning.Datamodule import DummyDataModule
+from app.model.pytorchLightning.LightningModel import LightningModel
 
 @app.route("/train/start",methods=['POST'])
 def start_train():
@@ -54,3 +47,4 @@ def start_train():
 
 
     return str(model)
+

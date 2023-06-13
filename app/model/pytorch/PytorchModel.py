@@ -1,8 +1,6 @@
-import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from functools import reduce
-from src.model.Layer import Layer
+from app.model.pytorch.Layer import Layer
 
 
 class PytorchModel(nn.Module):

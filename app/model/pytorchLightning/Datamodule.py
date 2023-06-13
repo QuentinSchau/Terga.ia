@@ -3,7 +3,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from src.model.dataset.DummyClassifyingDataset import DummyClassifyingDataset
+from app.model.dataset.DummyClassifyingDataset import DummyClassifyingDataset
 
 
 class DummyDataModule(pl.LightningDataModule):
