@@ -3,10 +3,10 @@ from lightning.pytorch.loggers import TensorBoardLogger
 from lightning.pytorch.callbacks import ModelCheckpoint,LearningRateMonitor
 import lightning.pytorch as pl
 from multiprocessing import Process
-from app import app
-from app.model.pytorch.PytorchModel import PytorchModel
-from app.model.pytorchLightning.Datamodule import DummyDataModule
-from app.model.pytorchLightning.LightningModel import LightningModel
+from application import app
+from application.model.pytorch.PytorchModel import PytorchModel
+from application.model.pytorchLightning.Datamodule import DummyDataModule
+from application.model.pytorchLightning.LightningModel import LightningModel
 
 @app.route("/train/start",methods=['POST'])
 def start_train():

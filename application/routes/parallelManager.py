@@ -1,15 +1,16 @@
 import flask
-from flask import request, copy_current_request_context
-from app import app
-from app.model.sse.MasterManager import MasterManager
+import requests
+from flask import request
+from application import app
+from application.model.sse.MasterManager import MasterManager
 
 masterManager = MasterManager()
 
 @app.route('/ping')
 def ping():
-    msg = MasterManager.format_sse(data='pong')
+    msg = MasterManager.format_sse(data='pong',event='add')
     masterManager.announce(msg=msg)
-    return {}, 200
+    return "sent", 200
 
 @app.route('/listen', methods=['GET'])
 def listen():

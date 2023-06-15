@@ -1,5 +1,5 @@
 import queue
-from app.model.sse.SlaveManager import SlaveManager
+from application.model.sse.SlaveManager import SlaveManager
 
 # there are flask-sse package, but we need install dependency, and it requires using Redis.
 class MasterManager:
