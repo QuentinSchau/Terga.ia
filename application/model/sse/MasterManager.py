@@ -1,4 +1,6 @@
+import functools
 import queue
+
 from application.model.sse.SlaveManager import SlaveManager
 
 # there are flask-sse package, but we need install dependency, and it requires using Redis.
@@ -11,6 +13,9 @@ class MasterManager:
         slave = SlaveManager(data)
         self.slaves.append(slave)
         return slave
+
+    def __str__(self):
+        return functools.reduce(lambda x,y : x + str(y) + ',',self.slaves,"[")[:-1] + "]"
 
     def announce(self, msg):
         for i in reversed(range(len(self.slaves))):

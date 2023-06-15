@@ -1,5 +1,5 @@
 import flask
-import requests
+import json
 from flask import request
 from application import app
 from application.model.sse.MasterManager import MasterManager
@@ -11,6 +11,10 @@ def ping():
     msg = MasterManager.format_sse(data='pong',event='add')
     masterManager.announce(msg=msg)
     return "sent", 200
+
+@app.route("/list/Slaves")
+def listSlaves():
+    return str(masterManager)
 
 @app.route('/listen', methods=['GET'])
 def listen():

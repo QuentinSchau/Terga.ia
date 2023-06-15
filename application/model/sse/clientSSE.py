@@ -24,7 +24,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
-from __future__ import unicode_literals
 
 import codecs
 import re
@@ -35,7 +34,6 @@ import six
 
 import requests
 
-__version__ = '0.0.27'
 
 # Technically, we should support streams that mix line endings.  This regex,
 # however, assumes that a system will provide consistent line endings.
