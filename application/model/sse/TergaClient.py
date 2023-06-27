@@ -1,4 +1,3 @@
-
 from application.model.pytorch.PytorchModel import PytorchModel
 from application.model.pytorchLightning.CallBacksLightning import CallBacksLightning
 from application.model.pytorchLightning.Datamodule import DummyDataModule
@@ -10,7 +9,10 @@ import json
 
 class TergaClient:
     r"""
-    This class implement Terga.ia client. It use on Terga.ia SLAVE Mode.
+    This class implement Terga.ia client. The client will start when you run the Flask app,
+    what ever your mode (Slave or Master).
+
+    This class, run train and set all options that users will use with Pytorch Lightning
     """
 
     def __init__(self, name=None,masterAddress=None,**kwargs):
@@ -23,7 +25,7 @@ class TergaClient:
 
     def subscrib(self):
         self.SSEClient = SSEClient('{0}listen?name={1}'.format(self.masterAddress, self.name))
-
+        self.run()
 
     def run(self):
         for message in self.SSEClient:
@@ -31,6 +33,7 @@ class TergaClient:
                 self.setTrainer(json.loads(message.data))
             if message.event == "runTrain":
                 self.runTrain(json.loads(message.data))
+            else : print(message.data)
     def setTrainer(self,trainerParameters):
         self.trainer = TrainerLightning(trainerParameters)
 

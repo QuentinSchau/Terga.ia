@@ -1,6 +1,5 @@
 from flask import request
-from application import app
-global tergaClient
+from application import app,tergaClient
 
 @app.route("/train/start",methods=['POST'])
 def start_train():
