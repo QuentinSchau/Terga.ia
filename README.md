@@ -11,8 +11,7 @@ This is a Framework for create and train Machine Learning models
 2. Create a virtual environment. `conda create -n Terga.ia python=3.9 -y`
 3. Use the virtual environment`conda activate Terga.ia`
 4. Install the dependencies `pip install -r requirements.txt`
-
-
-You should change the version of PyTorch to make calcul on your GPU, it depend of your system and CUDA driver [cf official site web](https://pytorch.org/get-started/locally/).
+5. you should configure your configuration with config.py file
+6. You need to add (manualy) a user with admin privilege 
 
 ## Usage

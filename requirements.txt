@@ -1,4 +1,6 @@
 Flask
+uuid
+PyJWT
 torch
 numpy
 torchvision

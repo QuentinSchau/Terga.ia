@@ -9,4 +9,4 @@ if __name__ == '__main__':
         p = Process(target=tergaClient.subscrib, name=tergaClient.name, daemon=False)
         p.start()
 
-    app.run(host="0.0.0.0",port=1234,debug=False)
+    app.run(host="0.0.0.0",port=5000)
