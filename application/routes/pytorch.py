@@ -1,7 +1,10 @@
 from flask import request
 from application import app,tergaClient
+from application.auth import token_required, admin_required
+
 
 @app.route("/train/start",methods=['POST'])
+@admin_required
 def start_train():
     if request.method == 'POST':
         net_param = request.get_json()
@@ -9,6 +12,7 @@ def start_train():
     return "train"
 
 @app.route("/train/callbacks",methods=['POST'])
+@token_required
 def setCallbacks():
     if request.method == 'POST':
         callBacksParam = request.get_json()
@@ -16,6 +20,7 @@ def setCallbacks():
     return "set callbacks"
 
 @app.route("/train/logger",methods=['POST'])
+@token_required
 def setLogger():
     if request.method == 'POST':
         loggerParam = request.get_json()
@@ -23,6 +28,7 @@ def setLogger():
     return "set logger"
 
 @app.route("/train/trainer",methods=['POST'])
+@token_required
 def setTrainer():
     if request.method == 'POST':
         trainerParam = request.get_json()

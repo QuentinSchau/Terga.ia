@@ -15,3 +15,6 @@ This is a Framework for create and train Machine Learning models
 6. You need to add (manualy with sqlite for example) a user with admin privilege on instance/Terga.ia.db file
 
 ## Usage
+
+For the moment, only admins can run training sessions. We're looking into the possibility of offering other privileges and roles.
+

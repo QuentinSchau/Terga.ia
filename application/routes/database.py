@@ -3,13 +3,14 @@ import uuid
 import datetime
 import jwt
 from flask import request, jsonify, make_response
-from werkzeug.security import generate_password_hash, check_password_hash
 
 from application import app, db
+from application.auth import admin_required
 from application.model.databaseModel.User import User
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['POST'])
+@admin_required
 def signup_user():
     data = request.get_json()
 
