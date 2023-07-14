@@ -14,11 +14,11 @@ def signup_user():
     data = request.get_json()
 
     # TODO Check user name, user email (with regex) and password to enjure that not injection
-    # check if we have all necessery fields
-    hashed_password = generate_password_hash(data['password'], method='sha256')
-
-    new_user = User(public_id=str(uuid.uuid4()), name=data['name'], email=data['email'], password=hashed_password,
+    #      Check if we have all necessery fields
+    #      Check if the user don't already exist
+    new_user = User(public_id=str(uuid.uuid4()), name=data['name'], email=data['email'],
                      admin=False,created_on=datetime.datetime.utcnow())
+    new_user.set_password(data['password'])
     db.session.add(new_user)
     db.session.commit()
 
@@ -32,8 +32,9 @@ def login_user():
         return make_response('could not verify', 401, {'WWW.Authentication': 'Basic realm: "login required"'})
 
     user = User.query.filter_by(name=auth.username).first()
-    if user is None : make_response('you are not registered', 401, {'WWW.Authentication': 'Basic realm: "login required"'})
-    if check_password_hash(user.password, auth.password):
+    if user is None : return make_response('you are not registered', 401, {'WWW.Authentication': 'Basic realm: "login required"'})
+    if user.check_password(auth.password):
+        user.isConnected()
         token = jwt.encode(
             payload=dict(public_id=user.public_id,
                  exp=datetime.datetime.utcnow() + datetime.timedelta(minutes=30)),

@@ -1,4 +1,6 @@
 """Database models."""
+import datetime
+
 from application import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -13,7 +15,7 @@ class User(db.Model):
     public_id = db.Column(
         db.Integer,
         nullable=False,
-        unique=False
+        unique=True
     )
     name = db.Column(
         db.String(100),
@@ -59,6 +61,10 @@ class User(db.Model):
     def check_password(self, password):
         """Check hashed password."""
         return check_password_hash(self.password, password)
+
+    def isConnected(self):
+        self.last_login = datetime.datetime.utcnow()
+        db.session.commit()
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

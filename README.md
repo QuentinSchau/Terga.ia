@@ -12,6 +12,6 @@ This is a Framework for create and train Machine Learning models
 3. Use the virtual environment`conda activate Terga.ia`
 4. Install the dependencies `pip install -r requirements.txt`
 5. you should configure your configuration with config.py file
-6. You need to add (manualy) a user with admin privilege 
+6. You need to add (manualy with sqlite for example) a user with admin privilege on instance/Terga.ia.db file
 
 ## Usage
