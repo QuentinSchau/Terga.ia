@@ -29,11 +29,16 @@ class TergaClient:
 
     def run(self):
         for message in self.SSEClient:
-            if message.event == "setTrainer":
-                self.setTrainer(json.loads(message.data))
-            if message.event == "runTrain":
-                self.runTrain(json.loads(message.data))
-            else : print(message.data)
+            try:
+                if message.event == "setTrainer":
+                    self.setTrainer(json.loads(message.data))
+                elif message.event == "runTrain":
+                    self.runTrain(json.loads(message.data))
+                #TODO secure this method with event to ensure that if the event isn't know then throw error
+                else : print(message.data)
+            except Exception as e:
+                print(e)
+
     def setTrainer(self,trainerParameters):
         self.trainer = TrainerLightning(trainerParameters)
 
@@ -53,7 +58,7 @@ class TergaClient:
             model = PytorchModel(parameters["model"])
         else:
             raise ValueError("model is not defined in the JSON parameters, you should defined it, see the doc")
-
+        #TODO check if they are Datamodule
         dataModule = DummyDataModule(parameters["dataModuleArgs"])
         lightningModel = LightningModel(model, parameters)
 

@@ -4,11 +4,13 @@ import json
 import requests
 from flask import request
 from application import app
+from application.auth import token_required, admin_required
 from application.model.sse.MasterManager import MasterManager
 
 masterManager = MasterManager()
 
 @app.route('/sent/',methods=['POST'])
+@admin_required
 def sent():
     if request.method == 'POST':
         requestBody = request.get_json()
@@ -18,10 +20,12 @@ def sent():
         return "sent :" + requestBody["event"], 200
 
 @app.route("/list/Slaves",methods=['GET'])
+@token_required
 def listSlaves():
     return str(masterManager)
 
 @app.route('/listen', methods=['GET'])
+@token_required
 def listen():
     if not "name" in request.args : return "missing name args in request",400
     slaveParams = dict(ipAddress=request.remote_addr,name=request.args["name"])

@@ -42,7 +42,7 @@ def token_required(func):
     def decorator(*args, **kwargs):
         current_user = checkConnexionToken()
         # if we have not a user, it's an error and we return it
-        if not isinstance(current_user,User.__class__):
+        if not isinstance(current_user,User):
             return current_user
         else:
             # TODO Check if User class is in annotations
