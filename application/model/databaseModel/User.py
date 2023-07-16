@@ -1,4 +1,3 @@
-"""Database models."""
 import datetime
 
 from application import db

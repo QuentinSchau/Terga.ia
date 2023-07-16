@@ -18,13 +18,11 @@ class SlaveManager:
     name: str
     ipAddress: str
     queueMessage: queue.Queue
-    trainer: pl.Trainer
 
     def __init__(self,data: dict):
         self.name = data["name"]
         self.ipAddress = data["ipAddress"]
         self.queueMessage = queue.Queue(maxsize=5)
-        self.trainer = None
 
     def getMessage(self):
         """

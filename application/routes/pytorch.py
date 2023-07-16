@@ -1,14 +1,15 @@
 from flask import request
 from application import app,tergaClient
 from application.auth import token_required, admin_required
+from application.model.databaseModel.User import User
 
 
 @app.route("/train/start",methods=['POST'])
 @admin_required
-def start_train():
+def start_train(user: User):
     if request.method == 'POST':
         net_param = request.get_json()
-        tergaClient.runTrain(net_param)
+        tergaClient.runTrain(user.id,net_param)
     return "train"
 
 @app.route("/train/callbacks",methods=['POST'])

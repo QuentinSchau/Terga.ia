@@ -1,5 +1,5 @@
 """Flask app configuration."""
-from os import environ, path
+from os import path
 
 basedir = path.abspath(path.dirname(__file__))
 
@@ -9,7 +9,7 @@ class Config:
     FLASK_APP = 'app.py'
     # FLASK_ENV = environ.get('FLASK_ENV')
     SECRET_KEY = "dev"
-
+    DEBUG=False
     # Flask-SQLAlchemy
     SQLALCHEMY_DATABASE_URI = 'sqlite:///Terga.ia.db'
     SQLALCHEMY_ECHO = False

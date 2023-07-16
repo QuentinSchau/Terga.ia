@@ -8,5 +8,6 @@ if __name__ == '__main__':
         tergaClient.masterAddress='http://172.31.57.94:5000/'
         p = Process(target=tergaClient.subscrib, name=tergaClient.name, daemon=False)
         p.start()
-
+    else:
+        tergaClient.name = "master"
     app.run(host="0.0.0.0",port=5090)

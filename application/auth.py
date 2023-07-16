@@ -46,7 +46,7 @@ def token_required(func):
             return current_user
         else:
             # TODO Check if User class is in annotations
-            if "user" in inspect.getfullargspec(func).args:
+            if "user" in inspect.getfullargspec(func).args and isinstance(inspect.getfullargspec(func).annotations['user'],User.__class__):
                 return func(current_user, *args, **kwargs)
             else:
                 return func(*args, **kwargs)
@@ -67,7 +67,7 @@ def admin_required(func):
         else:
             if current_user.admin:
                 # TODO Check if User class is in annotations
-                if "user" in inspect.getfullargspec(func).args:
+                if "user" in inspect.getfullargspec(func).args and isinstance(inspect.getfullargspec(func).annotations['user'],User.__class__):
                     return func(current_user, *args, **kwargs)
                 else:
                     return func(*args, **kwargs)

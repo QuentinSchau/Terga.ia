@@ -1,9 +1,7 @@
 import uuid
-
 import datetime
 import jwt
 from flask import request, jsonify, make_response
-
 from application import app, db
 from application.auth import admin_required
 from application.model.databaseModel.User import User

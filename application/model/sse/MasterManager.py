@@ -37,8 +37,9 @@ class MasterManager:
 
     # here describe of event structure :
     # https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#event_stream_format
-    def format_sse(data: str, event=None,id=None,retry=None) -> str:
-        msg = 'data: {0}\n\n'.format(data)
+    # here data should be a JSON wich contains field for user and field for data
+    def format_sse(data: str, event=None,id=None,retry=None,user_id=None) -> str:
+        msg = 'data: {{"user_id":{0},"data": {1}}}\n\n'.format(user_id,data) if user_id is not None else 'data: {{"data":{0}}}\n\n'.format(data)
         if retry is not None:
             msg = 'retry: {0}\n{1}'.format(retry,msg)
         if id is not None:
